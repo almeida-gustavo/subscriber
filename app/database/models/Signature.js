@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import signatureEnums from '../../src/enums/signatureTypeEnum';
 
 class Signature extends Model {
   static init(sequelize) {
@@ -7,8 +8,14 @@ class Signature extends Model {
         title: Sequelize.STRING,
         description: Sequelize.STRING,
         value: Sequelize.FLOAT,
-        type: Sequelize.INTEGER,
-        canceledAt: Sequelize.DATEONLY,
+        type: {
+          type: Sequelize.INTEGER,
+          get() {
+            const typeString = signatureEnums.getKey(this.getDataValue('type'));
+            return typeString;
+          },
+        },
+        expireDate: Sequelize.DATEONLY,
         automaticRenovation: {
           type: Sequelize.BOOLEAN,
           defaultValue: true,

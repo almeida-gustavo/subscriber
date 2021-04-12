@@ -8,7 +8,6 @@ const models = [Signature];
 class Database {
   constructor() {
     this.init();
-    this.mongo();
   }
 
   init() {
