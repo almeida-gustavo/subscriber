@@ -2,8 +2,9 @@ import Sequelize from 'sequelize';
 
 import databaseConfig from '../config/database';
 import Signature from './models/Signature';
+import User from './models/User';
 
-const models = [Signature];
+const models = [Signature, User];
 
 class Database {
   constructor() {
